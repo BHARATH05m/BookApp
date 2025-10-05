@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import BookCard from './BookCard';
 import { bookCategories } from '../data/books';
 import { googleBooksService } from '../services/googleBooksService';
-import { bookService } from '../services/bookService';
-import { allowedGenres } from '../constants/genres';
 import './Home.css';
 
 const Home = ({ user }) => {

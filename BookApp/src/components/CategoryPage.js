@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getBooksByCategory } from '../data/books';
 import { googleBooksService } from '../services/googleBooksService';
-import { allowedGenres } from '../constants/genres';
 import BookCard from './BookCard';
 import './CategoryPage.css';
 

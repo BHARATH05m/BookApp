@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { searchBooks } from '../data/books';
 import { googleBooksService } from '../services/googleBooksService';
 import BookCard from './BookCard';
 import './SearchResults.css';
