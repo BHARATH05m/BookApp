@@ -17,14 +17,12 @@ const SearchResults = ({ searchQuery }) => {
     const fetchResults = async () => {
       setLoading(true);
       try {
-        const gb = await googleBooksService.search(searchQuery, 20);
-        if (gb.length > 0) {
-          setSearchResults(gb);
-        } else {
-          setSearchResults(searchBooks(searchQuery));
-        }
+        // Always fetch from Google Books API with more results
+        const gb = await googleBooksService.search(searchQuery, 40);
+        setSearchResults(gb);
       } catch (error) {
-        setSearchResults(searchBooks(searchQuery));
+        console.error('Error searching Google Books:', error);
+        setSearchResults([]);
       } finally {
         setLoading(false);
       }

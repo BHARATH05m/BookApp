@@ -34,18 +34,16 @@ const CategoryPage = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       setLoading(true);
+      setError(null);
       try {
         const googleCat = getGoogleCategory(categoryId);
-        const gb = await googleBooksService.byCategory(googleCat, 20);
-        if (gb.length > 0) {
-          setBooks(gb);
-        } else {
-          setBooks(getBooksByCategory(categoryId));
-        }
-        setError(null);
+        // Always fetch from Google Books API with more results
+        const gb = await googleBooksService.byCategory(googleCat, 40);
+        setBooks(gb);
       } catch (err) {
-  setBooks(getBooksByCategory(categoryId));
-        setError('Error loading books');
+        console.error('Error fetching books from Google Books:', err);
+        setError('Error loading books from Google Books API');
+        setBooks([]);
       } finally {
         setLoading(false);
       }

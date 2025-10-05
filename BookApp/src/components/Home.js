@@ -18,31 +18,43 @@ const Home = ({ user }) => {
       const favorites = Array.isArray(user?.favoriteGenres) ? user.favoriteGenres : [];
       
       try {
-        // First, try to fetch books from backend database
-        const backendBooks = await bookService.getAllBooks();
-        
-        if (backendBooks && backendBooks.length > 0) {
-          // Use backend books if available
-          setBooks(backendBooks.filter(book => typeof book.rating === 'number' && book.rating > 0));
-        } else if (favorites.length > 0) {
-          // Fallback: Fetch books for each favorite genre from Google Books
+        if (favorites.length > 0) {
+          // Fetch books for each favorite genre from Google Books API
+          console.log('Fetching books for favorite genres:', favorites);
           const allResults = await Promise.all(
-            favorites.map(fav => googleBooksService.byCategory(fav, 20))
+            favorites.map(async (fav) => {
+              try {
+                const books = await googleBooksService.byCategory(fav, 40);
+                console.log(`Fetched ${books.length} books for genre: ${fav}`);
+                return books;
+              } catch (err) {
+                console.error(`Error fetching ${fav}:`, err);
+                return [];
+              }
+            })
           );
-          const flat = allResults.flat().filter(book => typeof book.rating === 'number' && book.rating > 0);
+          // Don't filter by rating - show all books
+          const flat = allResults.flat();
+          console.log(`Total books fetched: ${flat.length}`);
           setBooks(flat);
         } else {
-          // Last resort: Fetch popular books from Google Books
-          const popularBooks = await googleBooksService.byCategory('bestseller', 50);
-          setBooks(popularBooks.filter(book => typeof book.rating === 'number' && book.rating > 0));
+          // Fetch books from multiple popular genres
+          const genres = ['fiction', 'science', 'history', 'technology', 'business', 'psychology'];
+          const allResults = await Promise.all(
+            genres.map(genre => googleBooksService.byCategory(genre, 20))
+          );
+          // Don't filter by rating - show all books
+          const flat = allResults.flat();
+          setBooks(flat);
         }
       } catch (e) {
-        console.error('Error fetching books:', e);
-        // Fallback to Google Books on error
+        console.error('Error fetching books from Google Books:', e);
+        // Fallback to bestsellers if specific genres fail
         try {
           const popularBooks = await googleBooksService.byCategory('bestseller', 50);
-          setBooks(popularBooks.filter(book => typeof book.rating === 'number' && book.rating > 0));
+          setBooks(popularBooks);
         } catch (err) {
+          console.error('Error fetching bestsellers:', err);
           setBooks([]);
         }
       }
