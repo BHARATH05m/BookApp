@@ -1,0 +1,375 @@
+.admin-panel {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.admin-header h1 {
+  margin: 0;
+  color: #333;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.tab-button {
+  padding: 12px 24px;
+  border: 2px solid #e0e0e0;
+  background: white;
+  color: #666;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.tab-button:hover {
+  border-color: #007bff;
+  color: #007bff;
+  transform: translateY(-2px);
+}
+
+.tab-button.active {
+  background: #007bff;
+  border-color: #007bff;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+.tab-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.tab-header h2 {
+  margin: 0;
+  color: #333;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.access-denied {
+  text-align: center;
+  padding: 60px 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 2px solid #dee2e6;
+}
+
+.access-denied h2 {
+  color: #dc3545;
+  margin-bottom: 16px;
+  font-size: 24px;
+}
+
+.access-denied p {
+  color: #666;
+  font-size: 16px;
+  margin: 0;
+}
+
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border-left: 4px solid #007bff;
+}
+
+.stat-card h3 {
+  margin: 0 0 12px 0;
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-number {
+  margin: 0;
+  color: #007bff;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.reported-comments {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.loading,
+.no-comments {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+  font-size: 16px;
+}
+
+.no-comments {
+  background: #f8f9fa;
+  border: 2px dashed #dee2e6;
+  margin: 20px;
+  border-radius: 8px;
+}
+
+.reported-comment-card {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 24px;
+  transition: background-color 0.2s ease;
+}
+
+.reported-comment-card:hover {
+  background-color: #f8f9fa;
+}
+
+.reported-comment-card:last-child {
+  border-bottom: none;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.comment-info h4 {
+  margin: 0 0 8px 0;
+  color: #333;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.comment-date,
+.book-info {
+  margin: 4px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.book-info {
+  font-weight: 500;
+  color: #007bff;
+}
+
+.comment-rating {
+  font-size: 20px;
+  color: #ffc107;
+}
+
+.comment-content {
+  margin-bottom: 20px;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #007bff;
+}
+
+.comment-content p {
+  margin: 0;
+  line-height: 1.6;
+  color: #444;
+}
+
+.report-info {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.report-details h5 {
+  margin: 0 0 12px 0;
+  color: #856404;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.report-details p {
+  margin: 6px 0;
+  color: #856404;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.report-details strong {
+  font-weight: 600;
+}
+
+.comment-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.load-more {
+  text-align: center;
+  padding: 30px;
+  background: #f8f9fa;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s ease;
+  min-width: 120px;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: #007bff;
+  color: white;
+  border: 2px solid #007bff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #0056b3;
+  border-color: #0056b3;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+.btn-success {
+  background: #28a745;
+  color: white;
+  border: 2px solid #28a745;
+}
+
+.btn-success:hover:not(:disabled) {
+  background: #1e7e34;
+  border-color: #1e7e34;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+.btn-danger {
+  background: #dc3545;
+  color: white;
+  border: 2px solid #dc3545;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: #c82333;
+  border-color: #c82333;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  color: #007bff;
+  border: 2px solid #007bff;
+}
+
+.btn-outline:hover:not(:disabled) {
+  background: #007bff;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .admin-panel {
+    padding: 16px;
+  }
+
+  .admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .admin-header h1 {
+    font-size: 24px;
+  }
+
+  .admin-tabs {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .tab-button {
+    flex: 1;
+    text-align: center;
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .admin-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .comment-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .comment-actions {
+    justify-content: flex-start;
+  }
+
+  .btn {
+    min-width: 100px;
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-panel {
+    padding: 12px;
+  }
+
+  .reported-comment-card {
+    padding: 16px;
+  }
+
+  .comment-actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    min-width: auto;
+  }
+}
