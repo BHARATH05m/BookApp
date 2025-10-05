@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-const base = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5001';
+// Use backend URL from environment variable, or empty string if not set
+const base = process.env.REACT_APP_BACKEND_URL || '';
 const api = axios.create({
-  baseURL: `${base}/api`,
-  // timeout: 10000,
+  baseURL: base ? `${base}/api` : '/api',
+  timeout: 10000,
 });
 
 // Add auth token to all requests
