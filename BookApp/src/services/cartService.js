@@ -30,7 +30,7 @@ export const checkoutCart = async (addressData = null, transactionId = null) => 
 };
 
 export const getPurchasedItems = async () => {
-  const { data } = await api.get('/cart/admin/purchased');
+  const { data } = await api.get('/orders/admin');
   return data;
 };
 

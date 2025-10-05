@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-// Use backend URL from environment variable, or empty string if not set
-const base = process.env.REACT_APP_BACKEND_URL || '';
+// Use backend URL from environment variable, or default to localhost for development
+const base = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5002';
 const api = axios.create({
-  baseURL: base ? `${base}/api` : '/api',
+  baseURL: `${base}/api`,
   timeout: 10000,
 });
 

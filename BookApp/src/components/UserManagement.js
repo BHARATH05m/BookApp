@@ -33,7 +33,7 @@ const UserManagement = ({ user }) => {
         search: searchTerm
       });
 
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5001';
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5002';
       const response = await fetch(`${backendUrl}/api/auth/users?${params}`, {
         headers: {
           'Authorization': `Bearer ${token}`,

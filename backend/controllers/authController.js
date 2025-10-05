@@ -177,14 +177,39 @@ async function changePassword(req, res) {
 
 async function getAllUsers(req, res) {
     try {
-        const users = await User.find().select('-password');
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+        const search = req.query.search || '';
+        
+        const query = search 
+            ? { $or: [
+                { username: { $regex: search, $options: 'i' } },
+                { email: { $regex: search, $options: 'i' } }
+              ]}
+            : {};
+        
+        const totalUsers = await User.countDocuments(query);
+        const users = await User.find(query)
+            .select('-password')
+            .skip((page - 1) * limit)
+            .limit(limit)
+            .sort({ createdAt: -1 });
+        
+        const totalPages = Math.ceil(totalUsers / limit);
+        
         res.json({
+            success: true,
             users,
-            count: users.length
+            pagination: {
+                totalUsers,
+                totalPages,
+                currentPage: page,
+                hasMore: page < totalPages
+            }
         });
     } catch (error) {
         console.error('Get all users error:', error);
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ success: false, message: 'Server error' });
     }
 }
 
