@@ -16,8 +16,11 @@ const purchaseRoutes = require('./routes/purchases');
 const app = express();
 
 // Middleware
-const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || 'http://localhost:3000';
-app.use(cors({ origin: FRONTEND_ORIGIN }));
+const FRONTEND_ORIGIN = process.env.FRONTEND_URL || process.env.FRONTEND_ORIGIN || 'http://localhost:3000';
+app.use(cors({ 
+  origin: [FRONTEND_ORIGIN, 'https://book-app-git-main-bharath05ms-projects.vercel.app'],
+  credentials: true 
+}));
 app.use(express.json());
 
 // Routes
